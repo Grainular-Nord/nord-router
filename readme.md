@@ -1,46 +1,77 @@
 <!-- @format -->
 
-# TypeScript NPM-Package Template
+# @grainular/nord-router
 
-This template can be used as a opinionated starting point for a typescript based npm package. It uses several tools to enhance the dx aspect of creating a npm package. Read more about how the different aspects of the template in the [`Contributing Guidelines`](./contributing.md).
+[![Npm package version](https://badgen.net/npm/v/@grainular/nord-router)](https://www.npmjs.com/package/@grainular/nord-router)
+[![Npm package total downloads](https://badgen.net/npm/dt/@grainular/nord-router)](https://npmjs.com/package/@grainular/nord-router)
+[![Npm package license](https://badgen.net/npm/license/@grainular/nord-router)](https://npmjs.com/package/@grainular/nord-router)
 
-## Tools used in the template
+`@grainular/nord-router` is a powerful client-side routing library for Nørd applications. It provides an intuitive and flexible API to manage navigation and route handling in modern web applications, leveraging Nørd's reactive and component-based architecture.
 
--   [yarn](https://yarnpkg.com/getting-started)
--   [TypeScript](https://www.typescriptlang.org)
--   [Rollup](https://rollupjs.org/guide/en/) as bundler, using esbuild to transpile TypeScript to JavaScript
--   [ava](https://github.com/avajs/ava) as test-runner
--   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to ensure commit standards
--   [Semantic Release](https://semantic-release.gitbook.io/semantic-release/) to create releases automatically
--   [Prettier](https://prettier.io) & [Pretty-quick](https://www.npmjs.com/package/pretty-quick) to format the code
--   [alex](https://alexjs.com) for linting the documentation
+## Installation
 
-## Getting started
-
-To get started, clone the repository and recreate the git repository to start with a clean template.
+You can install `@grainular/nord-router` using npm or yarn:
 
 ```bash
-git clone https://github.com/IamSebastianDev/template-pkg.git <your-package-name>
+# Using yarn
+yarn add @grainular/nord-router
 
-cd <your-package-name>
-
-# Reset the git repository
-yarn reset
-
-# This will leave you with three branches, main, development and release.
+# Using npm
+npm install @grainular/nord-router
 ```
 
-After creating a new repository, fill out the remaining information in the `package.json` and install the dev-dependencies. You should use the defaults already set in the `package.json` and only change the not already set meta information.
+## Features
 
-```bash
-# fill out the package.json
-yarn init
-# do a clean install of the dependencies
-yarn ci
-# install githooks
-yarn setup
+-   **Declarative Routing**: Define routes in a simple and intuitive manner, with support for dynamic route parameters, nested routes, and redirects.
+-   **Reactive Route Handling**: Utilize Nørd's reactive system to respond to route changes and manage route state.
+-   **Component-Based**: Seamlessly integrate routing with Nørd components, enabling dynamic component rendering based on the current route.
+
+## Documentation
+
+The complete documentation can be found [here](https://nordjs.dev/packages/router/overview.html)
+
+## Usage
+
+### Basic Routing Setup
+
+```ts
+import { createComponent, render } from '@grainular/nord';
+import { createRouter, Route } from '@grainular/nord-router';
+import { Home } from './pages/home.page.ts';
+
+const routes: Route[] = [
+    {
+        path: '/',
+        redirect: '/home',
+    },
+    {
+        path: '/home',
+        component: Home,
+    },
+    // ... more routes ...
+];
+
+const router = createRouter(routes, { notFound: '/404' });
+
+const App = createComponent((html) => {
+    return html`<div>
+        <nav>
+            <!-- Navigation links -->
+            <a href="/home" ${router.link}>Home</a>
+        </nav>
+        ${router.outlet}
+    </div>`;
+});
+
+render(App, { target: document.querySelector('#app') });
 ```
 
-## Development
+This example demonstrates defining routes, creating a router, and setting up an outlet for rendering components based on the current route.
 
-Checkout the [`Contributing Guidelines`](./contributing.md) to find out how to develop within your newly created repository.
+## Contributing
+
+We welcome contributions to `Nørd-Router`! If you're interested in contributing, please check out our [contribution guidelines](./contributing.md).
+
+## License
+
+`Nørd-Router` is made available under the MIT License. For more details, see the [license](./license.md) file.
