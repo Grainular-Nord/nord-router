@@ -4,7 +4,7 @@
   "module": "dist/index.mjs",
   "exports": {
     "require": "./dist/index.js",
-    "import": "./dist/index.mjs", 
+    "import": "./dist/index.mjs",
     "types": "./dist/types/index.d.ts"
   },
   "types": "dist/types/index.d.ts",
@@ -12,14 +12,16 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@grainular/nord": "^1.10.1",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^20.10.3",
     "alex": "^11.0.0",
     "ava": "^6.0.1",
     "esbuild": "^0.19.4",
     "husky": "^8.0.2",
-    "prettier": "^3.1.0",
+    "prettier": "^2.8.0",
     "pretty-quick": "^3.1.3",
     "rollup": "^4.9.1",
     "rollup-plugin-cleanup": "^3.2.1",
@@ -54,8 +56,9 @@
   "version": "1.0.0",
   "repository": "https://github.com/Grainular-Nord/nord-router.git",
   "author": "Sebastian Heinz <sebsatian@iamsebastian.dev>",
-  "private": false, 
+  "private": false,
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "unpkg": "./dist/index.browser.min.js"
 }
